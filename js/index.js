@@ -1,36 +1,81 @@
 $(function () {
-    var speed = 10,
-        stop = 13000;
 
-    $('.list-group').each(function (index) {
-        if (index == 0) {
-            $(this).css({
-                top: 0
-            });
-        } else {
-            var top = parseInt($('.list-group:eq(' + (index - 1) + ')').css('top')) + $(this).height();
-            $(this).css({
-                top: top
-            });
-        }
-    });
+    initList();
+    var speed = 10,
+        stop = 3000;
+
+
+
     var index = 0;
     var isBegin = false;
+
     $('.start').on('click', function () {
-        console.log('index', index);
         if (isBegin) {
             return false;
         }
+        var numRand = Math.random() * $('.list-group').length;
         isBegin = true;
-        $('.list-group').eq(index).css({
-            top: parseInt($('.list-group').eq(index).css('top')) - $('.list-group').eq(index).height()
-        });
-        $('.list-group').eq(index + 1).css({
-            top: parseInt($('.list-group').eq(index).css('top')) + $('.list-group').eq(index).height()
-        })
+        var _list = $('.list-group');
+        //        var timer = setInterval(function () {
+        if (index >= _list.length - 1) {
+            index = 0;
+            _list.eq(_list.length - 1).animate({
+                top: parseInt(_list.eq(_list.length - 1).css('top')) - (_list.eq(index).height() * (index + 1))
+            }, {
+                speed: speed,
+                complete: function () {
+                    _list.eq(_list.length - 1).css({
+                        top: _list.eq(index).height()
+                    });
+                }
+            });
 
-        isBegin = false;
-        index += 1;
+            _list.eq(index).animate({
+                top: 0
+            }, speed);
+
+
+        } else {
+            _list.eq(index).animate({
+                top: parseInt(_list.eq(index).css('top')) - _list.eq(index).height()
+            }, {
+                speed: speed,
+                complete: function () {
+                    _list.eq(index).css({
+                        top: _list.eq(index).height()
+                    });
+                }
+            });
+            _list.eq(index + 1).animate({
+                top: 0
+            }, speed);
+            index += 1;
+        }
+
+        //        }, easeInOutCirc(1000, 50, 120, 130, 140));
+
+        setTimeout(function () {
+            clearInterval(timer);
+            isBegin = false;
+        }, stop);
+
+
+
+
 
     });
 });
+
+function initList() {
+    $('.list-group').each(function (i) {
+        var top = parseInt($('.list-group:eq(' + (i) + ')').css('top')) + ($(this).height() * i);
+        $(this).animate({
+            top: top
+        });
+    });
+}
+
+function easeInOutCirc(x, t, b, c, d) {
+    if ((t /= d / 2) < 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
+    return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
+}
