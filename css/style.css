@@ -1,73 +1,25 @@
+html,
 body,
-div {
+div,
+ul,
+li {
     margin: 0;
     padding: 0;
 }
 body {
-    background: #000 url('../images/main_bg.jpg') no-repeat center top fixed;
-    background-size: cover;
+    background: url(../images/body_bg.jpg) 0px 0px repeat-x #000;
+    overflow: hidden;
 }
 ul,
 li {
     list-style: none;
 }
-#main {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    position: relative;
-    text-align: center;
-    /*    background: url('../images/main_bg.jpg');*/
-}
-.content {
-    height: 100%;
-    text-align: center;
-    vertical-align: middle;
-}
-.rotate {
-    width: 55%;
-    height: 212px !important;
-    margin: 0 auto;
-    text-align: center;
-}
-@media (min-width: 1000px) {
-    .rotate {
-        width: 53%;
-        margin-top: -9%;
-    }
-}
-@media (min-width: 1300px) {
-    .rotate {}
-}
-@media (min-width: 1600px) {
-    .rotate {
-        height: 280px !important;
-        margin-top: 7%;
-    }
-}
-.rotate ul {
-    width: 100%;
-    height: 80%;
-    overflow: hidden;
-}
-.rotate ul li {
-    width: 100%;
-    height: 80%;
-    line-height: 2.3em;
-    text-align: center;
-    font-size: 100px;
-    color: red;
-}
 .start {
     position: absolute;
-    bottom: 10%;
+    bottom: 20%;
+    left: 39%;
     font-weight: bold;
-    margin-left: -5% !important;
-}
-.middle {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
+    z-index: 100;
 }
 .btn {
     color: #666;
@@ -75,7 +27,6 @@ li {
     border-color: #EEE;
     font-weight: 300;
     font-size: 16px;
-    font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     text-decoration: none;
     text-align: center;
     line-height: 60px;
@@ -101,4 +52,37 @@ li {
 }
 .btn-pill {
     border-radius: 200px;
+}
+.main_bg {
+    background: url(../images/main_bg.jpg) top center no-repeat;
+    height: 1000px;
+}
+.main {
+    width: 1000px;
+    height: 1000px;
+    position: relative;
+    margin: 0 auto;
+}
+.ld_box {
+    height: 450px;
+    width: 750px;
+    position: absolute;
+    left: 50%;
+    top: 340px;
+    margin-left: -370px;
+    z-index: 8;
+    overflow: hidden;
+    text-align: center;
+}
+.ld_box .ld_list {
+    height: 269px;
+    overflow: hidden;
+    position: relative;
+}
+.ld_box .ld_list .list-group {
+    width: 100%;
+    height: 269px;
+    font-size: 250px;
+    position: absolute;
+    top: 0;
 }
