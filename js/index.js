@@ -1,7 +1,7 @@
 $(function () {
 
     initList();
-    var speed = 10,
+    var duration = 100,
         stop = 3000;
 
 
@@ -16,43 +16,54 @@ $(function () {
         var numRand = Math.random() * $('.list-group').length;
         isBegin = true;
         var _list = $('.list-group');
-        //        var timer = setInterval(function () {
-        if (index >= _list.length - 1) {
-            index = 0;
-            _list.eq(_list.length - 1).animate({
-                top: parseInt(_list.eq(_list.length - 1).css('top')) - (_list.eq(index).height() * (index + 1))
-            }, {
-                speed: speed,
-                complete: function () {
-                    _list.eq(_list.length - 1).css({
-                        top: _list.eq(index).height()
-                    });
-                }
-            });
+        var timer = setInterval(function () {
+            if (index >= _list.length - 1) {
+                index = 0;
+                _list.eq(_list.length - 1).animate({
+                    top: parseInt(_list.eq(_list.length - 1).css('top')) - (_list.eq(index).height() * (index + 1))
+                }, {
+                    duration: duration,
+                    complete: function () {
+                        _list.eq(_list.length - 1).css({
+                            top: _list.eq(index).height()
+                        });
+                    }
+                });
 
-            _list.eq(index).animate({
-                top: 0
-            }, speed);
+                _list.eq(index).animate({
+                    top: 0
+                }, {
+                    duration: duration,
+                    complete: function(){
+                        //isBegin = false;
+                    }
+                });
 
 
-        } else {
-            _list.eq(index).animate({
-                top: parseInt(_list.eq(index).css('top')) - _list.eq(index).height()
-            }, {
-                speed: speed,
-                complete: function () {
-                    _list.eq(index).css({
-                        top: _list.eq(index).height()
-                    });
-                }
-            });
-            _list.eq(index + 1).animate({
-                top: 0
-            }, speed);
-            index += 1;
-        }
+            } else {
+                _list.eq(index).animate({
+                    top: parseInt(_list.eq(index).css('top')) - _list.eq(index).height()
+                }, {
+                    duration: duration,
+                    complete: function () {
+                        _list.eq(index).css({
+                            top: _list.eq(index).height()
+                        });
+                    }
+                });
+                _list.eq(index + 1).animate({
+                    top: 0
+                },{
+                    duration: duration,
+                    complete: function(){
+                        //isBegin = false;
+                        index += 1;
+                    }
+                });
 
-        //        }, easeInOutCirc(1000, 50, 120, 130, 140));
+            }
+
+        }, 150);
 
         setTimeout(function () {
             clearInterval(timer);
