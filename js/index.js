@@ -33,10 +33,7 @@ $(function () {
                 _list.eq(index).animate({
                     top: 0
                 }, {
-                    duration: duration,
-                    complete: function(){
-                        //isBegin = false;
-                    }
+                    duration: duration
                 });
 
 
