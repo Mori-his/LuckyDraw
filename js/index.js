@@ -1,8 +1,9 @@
 $(function () {
 
     initList();
-    var duration = 100,
-        stop = 3000;
+    var duration = 70,
+        speed = 100,
+        stop = 5000;
 
 
 
@@ -13,9 +14,12 @@ $(function () {
         if (isBegin) {
             return false;
         }
-        var numRand = Math.random() * $('.list-group').length;
         isBegin = true;
         var _list = $('.list-group');
+        stop = _list.length * speed * 10;
+        var numRan = parseInt((Math.random() + .1) * _list.length);
+        console.log(numRan);
+        stop += numRan * speed;
         var timer = setInterval(function () {
             if (index >= _list.length - 1) {
                 index = 0;
@@ -59,11 +63,12 @@ $(function () {
 
             }
 
-        }, 150);
+        }, speed);
 
         setTimeout(function () {
             clearInterval(timer);
             isBegin = false;
+            index = 0;
         }, stop);
 
 
@@ -76,7 +81,7 @@ $(function () {
 function initList() {
     $('.list-group').each(function (i) {
         var top = parseInt($('.list-group:eq(' + (i) + ')').css('top')) + ($(this).height() * i);
-        $(this).animate({
+        $(this).css({
             top: top
         });
     });
