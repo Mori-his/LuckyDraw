@@ -36,7 +36,6 @@ $(function () {
                     duration: duration
                 });
 
-
             } else {
                 _list.eq(index).animate({
                     top: parseInt(_list.eq(index).css('top')) - _list.eq(index).height()
