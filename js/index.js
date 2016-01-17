@@ -14,12 +14,26 @@ $(function () {
         if (isBegin) {
             return false;
         }
+
         isBegin = true;
         var _list = $('.list-group');
         stop = _list.length * speed * 10;
         var numRan = parseInt((Math.random() + .1) * _list.length);
         //console.log(numRan);
         stop += numRan * speed;
+        if(index != 0){
+            _list.eq(index).animate({
+                top: -_list.eq(index).height()
+            },{
+                duration: duration,
+                complete: function(){
+                    _list.eq(index).css({
+                        top: _list.eq(index).height()
+                    });
+                    index = 0;
+                }
+            })
+        }
 
         var timer = setInterval(function () {
             if (index >= _list.length - 1) {
@@ -73,7 +87,6 @@ $(function () {
         setTimeout(function () {
             clearInterval(timer);
             isBegin = false;
-            index = 0;//抽奖结束之后 下标归零
         }, stop);
 
     });
