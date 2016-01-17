@@ -1,14 +1,14 @@
 $(function () {
 
     initList();
-    var duration = 70,
-        speed = 100,
-        stop = 5000;
+    var duration = 70,//动画执行的毫秒,注意:不要大于步长(speed)的毫秒数
+        speed = 100,//步长
+        stop = 5000;//停止时间
 
 
 
-    var index = 0;
-    var isBegin = false;
+    var index = 0;//初始化当前下标
+    var isBegin = false;//阻止连续点击
 
     $('.start').on('click', function () {
         if (isBegin) {
@@ -18,11 +18,14 @@ $(function () {
         var _list = $('.list-group');
         stop = _list.length * speed * 10;
         var numRan = parseInt((Math.random() + .1) * _list.length);
-        console.log(numRan);
+        //console.log(numRan);
         stop += numRan * speed;
+
         var timer = setInterval(function () {
             if (index >= _list.length - 1) {
+
                 index = 0;
+
                 _list.eq(_list.length - 1).animate({
                     top: parseInt(_list.eq(_list.length - 1).css('top')) - (_list.eq(index).height() * (index + 1))
                 }, {
@@ -41,6 +44,7 @@ $(function () {
                 });
 
             } else {
+
                 _list.eq(index).animate({
                     top: parseInt(_list.eq(index).css('top')) - _list.eq(index).height()
                 }, {
@@ -51,6 +55,7 @@ $(function () {
                         });
                     }
                 });
+
                 _list.eq(index + 1).animate({
                     top: 0
                 },{
@@ -68,12 +73,8 @@ $(function () {
         setTimeout(function () {
             clearInterval(timer);
             isBegin = false;
-            index = 0;
+            index = 0;//抽奖结束之后 下标归零
         }, stop);
-
-
-
-
 
     });
 });
