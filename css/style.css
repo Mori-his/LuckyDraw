@@ -16,15 +16,22 @@ li {
 }
 .start {
     position: absolute;
-    bottom: 26%;
-    left: 39%;
+    top: 52%;
+    left: 30%;
+    font-weight: bold;
+    z-index: 100;
+}
+.thrice {
+    position: absolute;
+    top: 52%;
+    left: 50%;
     font-weight: bold;
     z-index: 100;
 }
 .btn {
     color: #666;
     background-color: #EEE;
-    border-color: #EEE;
+    border-color: #eee;
     font-weight: 300;
     font-size: 16px;
     text-decoration: none;
@@ -63,12 +70,25 @@ li {
     position: relative;
     margin: 0 auto;
 }
+#res {
+    position: absolute;
+    top: 5.5%;
+    left: 50%;
+    width: 75%;
+    height: 100px;
+    margin-left: -370px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 4em;
+    color: red;
+}
 .ld_box {
     height: 450px;
     width: 750px;
     position: absolute;
     left: 50%;
-    top: 340px;
+    top: 175px;
     margin-left: -370px;
     z-index: 8;
     overflow: hidden;
