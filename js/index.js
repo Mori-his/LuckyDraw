@@ -1,10 +1,11 @@
+/**
+ * Created by Mori on 2016/1/26.
+ */
 $(function () {
-
     initList();
     var duration = 50,//动画执行的毫秒,注意:不要大于步长(speed)的毫秒数
         speed = 80,//步长
         stop = 5000;//停止时间
-
 
     var isBegin = false;//阻止连续点击
 
