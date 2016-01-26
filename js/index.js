@@ -16,7 +16,7 @@ $(function () {
         isBegin = true;
         var _list = $('.list-group');
 
-        var numRan = parseInt((Math.random() + .1) * _list.length);
+        var numRan = parseInt(Math.random() * _list.length);
 
         //第一次进来的时候第一个往上移走
         _list.eq(0).animate({
@@ -30,7 +30,7 @@ $(function () {
             }
         });
         var timer = setInterval(function () {
-            var numRanID = parseInt((Math.random() + .1) * _list.length);
+            var numRanID = parseInt(Math.random() * _list.length);
             _list.eq(numRanID).animate({
                 top: parseInt(_list.eq(numRanID).css('top')) - _list.eq(numRanID).height()
             }, {
@@ -52,10 +52,14 @@ $(function () {
 
         setTimeout(function () {
             clearInterval(timer);
-            _list.eq(numRan).animate({
-                top: 0
-            });
-            isBegin = false;
+            setTimeout(function(){
+                _list.eq(numRan).animate({
+                    top: 0
+                },{
+                    duration: duration
+                });
+                isBegin = false;
+            },speed);
         }, stop);
         return numRan;
     }
@@ -79,7 +83,7 @@ $(function () {
         setTimeout(function(){
             $('#res').html('恭喜：' + $('.list-group').eq(winners).html());
         },stop);
-        console.log(winners);
+        console.log(winners+1);
     });
 });
 
